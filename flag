@@ -1,0 +1,63 @@
+#!/bin/zsh
+#create a pakistan flag on terminal
+#
+#Author: Abdullah  <abdullah.joiya@outlook.com>
+#Date: Jan 1,2025
+#License MIT
+#
+
+
+IFS= read -r -d '' FLAG <<-"EOF"
+	
+	 ___________________________
+	|      |                   |
+	|      |      0 1          |
+	|      |  2 1     *        |
+	|      |   3 0             |
+	|      |      2 1          |
+	|______|___________________|
+
+
+EOF
+
+#colors
+flag=$(tput setaf 82)
+base=...
+star=$(tput setaf 227)
+
+#flag lights
+lights=(
+	"$(tput setaf 111)"
+	"$(tput setaf 111)"
+	"$(tput setaf 198)"
+	"$(tput setaf 155)"
+)
+#length of lights
+len=${#lights[@]}
+
+cleanup(){
+	tput rmcup
+}
+trap cleanup exit
+tput smcup
+
+
+idx=0
+while true;do
+	clear
+	#style and color of flag
+	f=$flag$FLAG
+        f=${f//\*/${star}*${flag}}
+	f=${f//0 /${lights[idx % len]}o ${flag}}
+	f=${f//2 /${lights[(idx + 2) % len]}o ${flag}}
+	f=${f//3 /${lights[(idx + 3) % len]}o ${flag}}
+	f=${f//1 /${lights[(idx + 1) % len]}o ${flag}}
+
+	#display flag
+	clear
+	echo "$f"
+
+	((idx++))
+	sleep 1
+done
+tput sgr0
