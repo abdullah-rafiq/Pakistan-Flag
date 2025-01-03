@@ -1,6 +1,9 @@
 # Pakistan-Flag
 
-#Its all in **Zsh **if you to use **bash** in flg change first line to #!/bin/bash
-#**FInal version** is flg
-#To **run** it:
+Its all in **zsh**. If you want to use **bash**, in `flg`, change the first line to `#!/bin/bash`.
+
+**Final version** is `flg`.
+
+To **run** it:
+```bash
 ./flg
